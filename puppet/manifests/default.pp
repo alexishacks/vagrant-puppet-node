@@ -5,3 +5,5 @@ if $virtual == "virtualbox" and $fqdn == '' {
 
 include apache
 include system-update
+
+include nodejs
