@@ -1,3 +1,6 @@
 *.DS_Store
 .vagrant
 *.lock
+puppet/modules
+puppet/.librarian/
+puppet/.tmp/

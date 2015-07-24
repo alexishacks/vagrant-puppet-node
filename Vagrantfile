@@ -38,7 +38,7 @@ Vagrant.configure(2) do |config|
   # the path on the host to the actual folder. The second argument is
   # the path on the guest to mount the folder. And the optional third
   # argument is a set of non-required options.
-  # config.vm.synced_folder "../data", "/vagrant_data"
+  config.vm.synced_folder "app", "/appl"
 
   # Provider-specific configuration so you can fine-tune various
   # backing providers for Vagrant. These expose provider-specific options.
@@ -65,7 +65,14 @@ Vagrant.configure(2) do |config|
   # Enable provisioning with a shell script. Additional provisioners such as
   # Puppet, Chef, Ansible, Salt, and Docker are also available. Please see the
   # documentation for more information about their specific syntax and use.
-  # config.vm.provision :shell, :path => "script.sh"
+  config.vm.provision :shell, :path => "upgrade-puppet.sh"
+
+  config.librarian_puppet.puppetfile_dir = "puppet"
+  # placeholder_filename defaults to .PLACEHOLDER
+  #config.librarian_puppet.placeholder_filename = ".MYPLACEHOLDER"
+  config.librarian_puppet.use_v1_api  = '1' # Check https://github.com/rodjek/librarian-puppet#how-to-use
+  config.librarian_puppet.destructive = false # Check https://github.com/rodjek/librarian-puppet#how-to-use
+
   config.vm.provision :puppet do |puppet|
     puppet.manifests_path = "puppet/manifests"
     puppet.options = ['--verbose']

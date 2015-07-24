@@ -3,7 +3,13 @@ if $virtual == "virtualbox" and $fqdn == '' {
   $fqdn = 'localhost'
 }
 
+include apt
+
 include apache
-include system-update
 
 include nodejs
+
+package { 'express-generator':
+  ensure   => 'present',
+  provider => 'npm',
+}
