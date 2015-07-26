@@ -13,3 +13,9 @@ package { 'express-generator':
   ensure   => 'present',
   provider => 'npm',
 }
+
+
+package { 'gulp':
+  ensure   => 'present',
+  provider => 'npm',
+}
