@@ -11,6 +11,11 @@ include nodejs
 
 include git
 
+package { 'build-essential':
+  ensure   => 'present',
+  provider => 'apt',
+}
+
 package { 'express-generator':
   ensure   => 'present',
   provider => 'npm',
@@ -24,4 +29,9 @@ package { 'gulp':
 package { 'bower':
   ensure   => 'present',
   provider => 'npm',
+}
+
+class {'::mongodb::server':
+  port    => 27018,
+  verbose => true,
 }
